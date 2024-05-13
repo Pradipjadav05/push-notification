@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "843925357482",
+    "project_id": "live-chat-98404",
+    "storage_bucket": "live-chat-98404.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:843925357482:android:84be2723332c609824a1d3",
+        "android_client_info": {
+          "package_name": "com.example.live_chat_using_firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "843925357482-bf8rmif1hif35lj0g0p40fbbio8ut8sv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWgMCO9eciPZrAxqNXPjZoOIaNTh9gPrs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "843925357482-bf8rmif1hif35lj0g0p40fbbio8ut8sv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "843925357482-4on6fqhhvr2slnuc88jgcqfm69u2h955.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.liveChatUsingFirebase.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:843925357482:android:028988b8eb50546624a1d3",
+        "android_client_info": {
+          "package_name": "com.example.notification_channels"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "843925357482-bf8rmif1hif35lj0g0p40fbbio8ut8sv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWgMCO9eciPZrAxqNXPjZoOIaNTh9gPrs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "843925357482-bf8rmif1hif35lj0g0p40fbbio8ut8sv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "843925357482-4on6fqhhvr2slnuc88jgcqfm69u2h955.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.liveChatUsingFirebase.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
