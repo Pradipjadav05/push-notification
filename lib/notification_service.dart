@@ -115,6 +115,17 @@ class NotificationService {
     );
   }
 
+  //cancel specific notification
+  Future<void> cancelLastNotification(int id) async {
+    await notificationsPlugin.cancel(id);
+    if (id > 0) id--;
+  }
+
+  // cancel all notification
+  Future<void> cancelNotification() async {
+    await notificationsPlugin.cancelAll();
+  }
+
   // initialize firebase notification service
   void firebaseNotification(context) {
 

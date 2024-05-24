@@ -131,7 +131,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 NotificationService().showScheduleNotification(id: notificationId, title: "Schedule Notification", body: "Schedule Notification", seconds: 2);
               },
               child: const Text("Schedule Notification"),
-            )
+            ),
+            ElevatedButton(
+              onPressed: () async{
+                await NotificationService().cancelNotification();
+              },
+              child: const Text("Cancel notification"),)
           ],
         ),
       ),
