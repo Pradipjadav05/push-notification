@@ -40,6 +40,7 @@ dependencies:
   # firebase
   firebase_core: ^2.24.2
   firebase_messaging: ^14.7.10
+  timezone:
 
 dev_dependencies:
   flutter_test:

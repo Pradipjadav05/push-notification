@@ -91,7 +91,7 @@ class MainActivity: FlutterActivity() {
                 .build()
 
             // display notification
-            notificationManager.notify(id, notification)
+            notificationManager.notify(id!!.toInt(), notification)
             //to generate vibrate
             vibrateDevice()
             completed = true

@@ -79,12 +79,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
     // for flutter_local_notifications
 
-    // NotificationService().firebaseNotification(context);
-    // NotificationService().getToken();
-    //
-    // FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-    //   NotificationService().showNotification(body: "Background push notification");
-    // });
+    NotificationService().firebaseNotification(context);
+    NotificationService().getToken();
+
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      NotificationService().showNotification(body: "Background push notification");
+    });
 
   }
 
@@ -102,6 +102,36 @@ class _MyHomePageState extends State<MyHomePage> {
               _statusText,
               style: Theme.of(context).textTheme.headlineMedium,
             ),
+            ElevatedButton(
+              onPressed: () async {
+                int notificationId = DateTime
+                    .now()
+                    .millisecondsSinceEpoch
+                    .remainder(100000);
+                NotificationService().showNotification(id: notificationId, title: "manual notification", body: "using local notification package");
+              },
+              child: const Text("manual notification Notification"),
+            ),
+            ElevatedButton(
+                onPressed: () async {
+                  int notificationId = DateTime
+                      .now()
+                      .millisecondsSinceEpoch
+                      .remainder(100000);
+                  NotificationService().showPeriodicallyNotification(id: notificationId, title: "Periodic Notification", body: "Periodic Notification");
+                },
+              child: const Text("Periodic Notification"),
+            ),
+            ElevatedButton(
+              onPressed: () async {
+                int notificationId = DateTime
+                    .now()
+                    .millisecondsSinceEpoch
+                    .remainder(100000);
+                NotificationService().showScheduleNotification(id: notificationId, title: "Schedule Notification", body: "Schedule Notification", seconds: 2);
+              },
+              child: const Text("Schedule Notification"),
+            )
           ],
         ),
       ),

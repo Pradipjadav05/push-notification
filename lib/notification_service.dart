@@ -1,16 +1,27 @@
+import 'dart:math';
+
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:timezone/timezone.dart' as tz;
+import 'package:timezone/data/latest_all.dart' as tz;
 
 // for flutter_local_notifications
 
-/*class NotificationService {
+class NotificationService {
 
   final FlutterLocalNotificationsPlugin notificationsPlugin = FlutterLocalNotificationsPlugin();
 
   Future<void> initNotification() async {
     await Permission.notification.status.isDenied.then((value) {
+      if(value){
+        Permission.notification.request();
+      }
+    });
+
+    await Permission.scheduleExactAlarm.status.isDenied.then((value) {
       if(value){
         Permission.notification.request();
       }
@@ -27,14 +38,14 @@ import 'package:permission_handler/permission_handler.dart';
 
     var initializationSettings = InitializationSettings(android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
 
+    tz.initializeTimeZones();
+
     await notificationsPlugin.initialize(initializationSettings, onDidReceiveNotificationResponse: (payload) async {});
   }
 
 
 
-
-  Future showNotification({int id = 0, String? title, String? body, String? payLoad}) async {
-
+  Future<NotificationDetails> _notificationDetails() async {
     AndroidNotificationChannel androidNotificationChannel = AndroidNotificationChannel(
       Random.secure().nextInt(10000).toString(),
       "High Importance Notification",
@@ -51,16 +62,57 @@ import 'package:permission_handler/permission_handler.dart';
 
     NotificationDetails notificationDetails = NotificationDetails(android: androidNotificationDetails);
 
+    return notificationDetails;
+  }
+
+  Future showNotification({int id = 0, String title ="message.notification!.title", String body = "message.notification!.body", String? payLoad}) async {
+
     int notificationId = DateTime.now().millisecondsSinceEpoch.remainder(100000);
 
     notificationsPlugin.show(
       notificationId,
-      "message.notification!.title",
-      "message.notification!.body",
-      notificationDetails,
+      title,
+      body,
+      await _notificationDetails(),
     );
 
     // return notificationsPlugin.show(id, title, body, notificationDetails());
+  }
+
+  Future<void> showScheduleNotification({
+    required int id,
+    required String title,
+    required String body,
+    required int seconds,
+  }) async {
+
+    final details = await _notificationDetails();
+    await notificationsPlugin.zonedSchedule(
+      id,
+      "$title $id",
+      body,
+      tz.TZDateTime.from(
+          DateTime.now().add(Duration(seconds: seconds)), tz.local),
+      details,
+      uiLocalNotificationDateInterpretation:
+      UILocalNotificationDateInterpretation.absoluteTime,
+    );
+  }
+
+  // it is for periodically notification
+  Future<void> showPeriodicallyNotification({
+    required int id,
+    required String title,
+    required String body,
+  }) async {
+    final details = await _notificationDetails();
+    await notificationsPlugin.periodicallyShow(
+      id,
+      "$title $id",
+      body,
+      RepeatInterval.everyMinute,
+      details,
+    );
   }
 
   // initialize firebase notification service
@@ -81,7 +133,7 @@ import 'package:permission_handler/permission_handler.dart';
     final token = await FirebaseMessaging.instance.getToken();
   }
 
-}*/
+}
 
 class NotificationServiceChannel {
 
